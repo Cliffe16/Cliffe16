@@ -39,22 +39,6 @@
 * **Medallion Lakehouse & DLQ Resilience**: Fabric Data Factory and PySpark notebooks transform raw FAOSTAT API payloads across Bronze, Silver, and Gold Delta Parquet tables in OneLake, featuring threshold-based Dead-Letter Queue routing that quarantines anomalies under 10% and halts execution on critical spikes.
 * **Automated QA & Governance**: Enforces pre-promotion PySpark validation alongside Entra ID pass-through authentication and T-SQL Row-Level Security (RLS).
 
-#### [Bandcamp Sales Analytics & dbt Pipeline](https://github.com/Cliffe16/bandcamp-data-cleaning)
-
-> End-to-end ELT pipeline implementing a Medallion Architecture (Bronze $\rightarrow$ Silver $\rightarrow$ Gold) to transform raw Bandcamp sales feeds into a production Kimball Star Schema in PostgreSQL using dbt Core.
-
-* **Medallion Transformation Flow**: Stages raw CSV seeds in a `raw` Bronze schema with `varchar` type overrides to prevent UNIX timestamp integer overflows, standardizes multi-currency records to USD in `staging`, and builds `mart` fact/dimension tables.
-* **Deterministic Surrogate Keys & Grain Control**: Resolves multi-item cart transaction collisions by generating composite MD5 surrogate keys across transaction ID, artist, and item title.
-* **Edge-Case Accounting & Testing**: Handles promotional discount anomalies while isolating explicit discounts, validated by referential integrity and non-negative revenue dbt tests.
-
-#### [Real Estate Pricing Hybrid Scraper & Airflow Pipeline](https://github.com/Cliffe16/house_pricing_scraper)
-
-> Automated daily ETL pipeline orchestrated by Apache Airflow to extract, clean, and load BuyRentKenya property listings into PostgreSQL using a hybrid static/dynamic scraping architecture.
-
-* **Hybrid Extraction Engine**: Combines `requests` + `BeautifulSoup4` for high-speed static attribute pagination (pricing, bedrooms, bathrooms) with headless explicit waits to trigger lazy-rendered DOM elements and capture hidden seller contact metadata and timestamps.
-* **Airflow Worker Optimization**: Isolates pipeline execution from Airflow's 30-second DAG parser scan and tunes headless Chromium flags to eliminate memory leaks and `ReadTimeoutError` worker crashes.
-* **Two-Stage PostgreSQL Loading**: Batch-loads raw Pandas DataFrames via SQLAlchemy before executing deduplication and type normalization
-
 ### GitHub Activity
 
 <p align="center">
