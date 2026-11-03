@@ -1,47 +1,82 @@
-# Hi, I'm Cliffe Oluoch 
+# Hi, I'm Cliffe Oluoch
 
-**Data Engineer & Analytics Engineer** building resilient, production-ready ETL/ELT pipelines, orchestration workflows, and scalable data stores.
+**Data Engineer & Analytics Engineer** building resilient, production-ready ETL/ELT pipelines, real-time streaming architectures, and scalable analytical data stores.
 
-- **Current Focus**: Modern Data Stack architectures (Airflow, dbt Core, BigQuery, Docker) and streaming ingestion.
-- **Experience**: Developing reliable analytics data warehouses, automating extraction workflows, and orchestrating DAGs at SugarCube Africa.
-- **Education**: B.Sc. in Statistics and Programming — Kenyatta University.
-- **Based in**: Nairobi, Kenya *(Open to Remote & Relocation opportunities)*
-- **Reach me**: [LinkedIn](https://www.linkedin.com/in/cliffeoluoch) • [oluochcliffe13@gmail.com](mailto:oluochcliffe13@gmail.com)
+* **Current Focus**: Modern Data Stack & Streaming architectures (Airflow, dbt Core, Kafka, Spark Structured Streaming, BigQuery, Microsoft Fabric, Docker).
 
----
+* **Experience**: Developing reliable analytics data warehouses, automating extraction workflows, and orchestrating production DAGs at SugarCube Africa.
+
+* **Reach me**: [LinkedIn](https://www.linkedin.com/in/cliffeoluoch) • [oluochcliffe13@gmail.com](mailto:oluochcliffe13@gmail.com)
 
 ### Technical Stack
 
-- **Languages & Frameworks**: Python, SQL (PostgreSQL, BigQuery, MySQL, T-SQL), R, FastAPI, Django, Bash
-- **Data Engineering & Orchestration**: Apache Airflow, Astronomer Cosmos, dbt Core, MetricFlow, Celery, Redis
-- **Cloud & Warehousing**: Google Cloud Platform (BigQuery, GCS), Neon, PostgreSQL, Star Schema & SCD Type 2 Modeling
-- **Data Processing & Scraping**: Pandas, BeautifulSoup4, Requests, uv, Docker, Docker Compose
-- **Testing & Quality Assurance**: dbt tests, custom SQL data validation, GitHub Actions CI
+* **Languages & Frameworks**: Python, SQL (PostgreSQL, BigQuery, MySQL, T-SQL), KQL (Kusto), PySpark, FastAPI, Django, Bash
 
----
+* **Streaming & Change Data Capture**: Apache Kafka, Debezium (PostgreSQL WAL CDC), Apache Spark Structured Streaming, Azure EventHub, Microsoft Fabric Eventstream
+
+* **Orchestration & Transformation**: Apache Airflow, Astronomer Cosmos, dbt Core, MetricFlow, Fabric Data Factory, Celery, Redis
+
+* **Cloud, Lakehouse & Warehousing**: Google Cloud Platform (BigQuery, GCS), Microsoft Fabric (OneLake, Eventhouse/KQL DB, Data Activator), Apache Cassandra, PostgreSQL, Neon
+
+* **Data Modeling & Quality**: Kimball Star Schema, Medallion Architecture (Bronze/Silver/Gold), SCD Type 2, dbt tests, Dead-Letter Queue (DLQ) routing, GitHub Actions CI
+
+* **Data Extraction & DevOps**: BeautifulSoup4, Headless Selenium WebDriver, Pandas, Requests, uv, Docker, Grafana
 
 ### Featured Engineering Projects
 
 #### [NBA Analytics Pipeline](https://github.com/Cliffe16/NBA-Analytics-Pipeline)
-> Production-grade ELT pipeline extracting NBA game and player performance data, loading raw Parquet files to Google Cloud Storage & BigQuery, and modeling metrics using dbt Core and Apache Airflow.
-- **Orchestration & Transformation**: Astronomer Cosmos managing dbt DAGs inside Docker.
-- **Dimensional Modeling**: BigQuery Star Schema with SCD Type 2 tracking and MetricFlow semantic definitions.
-- **Data Quality & API**: Automated dbt assertions and a FastAPI endpoint serving aggregated stats.
+
+> Production-grade ELT pipeline extracting daily NBA game and player performance stats from `stats.nba.com`, staging raw Parquet files in Google Cloud Storage, and modeling analytics in BigQuery using dbt Core and Apache Airflow.
+
+* **Orchestration & Transformation**: Astronomer Cosmos rendering dbt models as native Airflow task groups inside Docker containers, with exponential backoff and rate-limit handling.
+
+* **Dimensional Modeling & Semantic Layer**: Kimball Star Schema (`fact_player_stats`, `fact_game_stats`, SCD Type 2 `dim_player`) paired with MetricFlow semantic metrics (True Shooting %, Hollinger Game Score).
+
+* **Data Quality & Serving**: Automated dbt schema and custom SQL data quality assertions, backed by a FastAPI service querying BigQuery marts.
 
 #### [Hybrid Binance Crypto Market Pipeline](https://github.com/Cliffe16/Hybrid-Binance-Crypto-Market-Pipeline)
-> Dual-layer data pipeline implementing a Lambda architecture pattern to process live market price feeds for high-volume cryptocurrency pairs.
+
+> Enterprise-grade Lambda architecture pipeline bridging batch extraction and real-time streaming across 3,700+ Binance cryptocurrency pairs (115,000+ data points) with zero data loss.
+
+* **CDC & Event Streaming**: Airflow DAGs ingest order books, candlesticks, and tickers into PostgreSQL; Debezium captures row-level Write-Ahead Log (WAL) changes and streams events into Apache Kafka.
+
+* **Distributed Stream Processing**: PySpark Structured Streaming consumes Kafka topics in 30-second micro-batches to flatten nested JSON payloads and compute 1-minute windowed spread and volume aggregations.
+
+* **High-Throughput Serving & Observability**: Writes aggregated metrics to Apache Cassandra and exposes REST endpoints via FastAPI (`/candlesticks`, `/order-books`, `/tickers`) feeding a live Grafana dashboard, orchestrated via a 6-step Docker Compose boot sequence with tuned JVM heap limits.
+
+#### [Agricultural Commodity Engine on Microsoft Fabric](https://github.com/Cliffe16/fabric-agri-commodity-engine-pipelines)
+
+> Hybrid real-time and batch data platform on Microsoft Fabric delivering liquidity and volatility insights by combining historical FAOSTAT crop yield datasets with live Yahoo Finance commodity streams (`SB=F` Sugar, `ZC=F` Corn, `KES=X`).
+
+* **Real-Time Streaming & Alerting**: Offloads continuous Python (`yfinance`) polling to scheduled GitHub Actions to optimize Fabric F-SKU compute capacity, streaming via Azure EventHub SDK into Fabric Eventstream, a KQL Eventhouse (5-minute tumbling windows), and Data Activator (Reflex) for $\pm 15\%$ price volatility alerts.
+
+* **Medallion Lakehouse & DLQ Resilience**: Fabric Data Factory and PySpark notebooks transform raw FAOSTAT API payloads across Bronze, Silver, and Gold Delta Parquet tables in OneLake, featuring threshold-based Dead-Letter Queue (`silver_faostat_dlq`) routing that quarantines anomalies under 10% and halts execution on critical spikes.
+
+* **Automated QA & Governance**: Enforces pre-promotion PySpark validation (`QA_Silver_Yields`) alongside Entra ID pass-through authentication and T-SQL Row-Level Security (RLS).
 
 #### [Bandcamp Sales Analytics & dbt Pipeline](https://github.com/Cliffe16/bandcamp-data-cleaning)
-> Cleaned, partitioned, and modeled historical sales feed data using modular dbt staging, intermediate, and mart layers.
 
-#### [Fabric Agri-Commodity Engine Pipelines](https://github.com/Cliffe16/fabric-agri-commodity-engine-pipelines)
-> Production ETL pipelines extracting, validating, and transforming agricultural commodity market feeds.
+> End-to-end ELT pipeline implementing a Medallion Architecture (Bronze $\rightarrow$ Silver $\rightarrow$ Gold) to transform raw Bandcamp sales feeds into a production Kimball Star Schema in PostgreSQL using dbt Core.
 
----
+* **Medallion Transformation Flow**: Stages raw CSV seeds in a `raw` Bronze schema with `varchar` type overrides to prevent UNIX timestamp integer overflows, standardizes multi-currency records to USD in `staging` (`stg_bandcamp_sales`), and builds `mart` fact/dimension tables (`fct_sales`, `dim_artist`, `dim_item`).
+
+* **Deterministic Surrogate Keys & Grain Control**: Resolves multi-item cart transaction collisions by generating composite MD5 surrogate keys (`dbt_utils.generate_surrogate_key`) across transaction ID, artist, and item title.
+
+* **Edge-Case Accounting & Testing**: Handles promotional discount anomalies via SQL `GREATEST(0, ...)` logic while isolating explicit discounts in `discount_usd`, validated by referential integrity and non-negative revenue dbt tests.
+
+#### [Real Estate Pricing Hybrid Scraper & Airflow Pipeline](https://github.com/Cliffe16/house_pricing_scraper)
+
+> Automated daily ETL pipeline orchestrated by Apache Airflow to extract, clean, and load BuyRentKenya property listings into PostgreSQL using a hybrid static/dynamic scraping architecture.
+
+* **Hybrid Extraction Engine**: Combines `requests` + `BeautifulSoup4` for high-speed static attribute pagination (pricing, bedrooms, bathrooms) with headless `Selenium WebDriver` explicit waits to trigger lazy-rendered DOM elements and capture hidden seller contact metadata and timestamps.
+
+* **Airflow Worker Optimization**: Isolates pipeline execution from Airflow's 30-second DAG parser scan and tunes headless Chromium flags (`--no-sandbox`, `--disable-dev-shm-usage`, `--disable-gpu`) to eliminate memory leaks and `ReadTimeoutError` worker crashes.
+
+* **Two-Stage PostgreSQL Loading**: Batch-loads raw Pandas DataFrames via SQLAlchemy into `raw_data` before executing deduplication and type normalization into `cleaned_data`.
 
 ### GitHub Activity
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Cliffe16&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="Cliffe's GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Cliffe16&layout=compact&theme=radical&hide_border=true" alt="Top Languages" />
+<img src="https://github-readme-stats.vercel.app/api?username=Cliffe16&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="Cliffe's GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Cliffe16&layout=compact&theme=radical&hide_border=true" alt="Top Languages" />
 </p>
