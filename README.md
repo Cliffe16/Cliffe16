@@ -41,5 +41,5 @@ I'm a Data Engineer & Analytics Engineer building resilient pipelines with real-
 
 ### GitHub Activity
 
-[https://github-stats-extended.vercel.app/api?username=Cliffe16&show_icons=true&theme=radical&hide_border=true]
-[https://github-stats-extended.vercel.app/api/top-langs/?username=Cliffe16&layout=compact&theme=radical&hide_border=true]
+<img src="https://github-stats-extended.vercel.app/api?username=Cliffe16&show_icons=true&theme=radical&hide_border=true" alt="GitHub Stats" />
+<img src="https://github-stats-extended.vercel.app/api/top-langs/?username=Cliffe16&layout=compact&theme=radical&hide_border=true" alt="Top Languages" />
