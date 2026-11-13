@@ -38,8 +38,3 @@ I'm a Data Engineer & Analytics Engineer building resilient pipelines with real-
 * **Real-Time Streaming & Alerting**: Offloads continuous Python polling to scheduled GitHub Actions to optimize Fabric F-SKU compute capacity, streaming via Azure EventHub SDK into Fabric Eventstream, a KQL Eventhouse (5-minute tumbling windows), and Data Activator (Reflex) for price volatility alerts.
 * **Medallion Lakehouse & DLQ Resilience**: Fabric Data Factory and PySpark notebooks transform raw FAOSTAT API payloads across Bronze, Silver, and Gold Delta Parquet tables in OneLake, featuring threshold-based Dead-Letter Queue routing that quarantines anomalies under 10% and halts execution on critical spikes.
 * **Automated QA & Governance**: Enforces pre-promotion PySpark validation alongside Entra ID pass-through authentication and T-SQL Row-Level Security (RLS).
-
-### GitHub Activity
-
-<img src="https://github-stats-extended.vercel.app/api?username=Cliffe16&show_icons=true&theme=radical&hide_border=true" alt="GitHub Stats" />
-<img src="https://github-stats-extended.vercel.app/api/top-langs/?username=Cliffe16&layout=compact&theme=radical&hide_border=true" alt="Top Languages" />
