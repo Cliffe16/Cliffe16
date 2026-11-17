@@ -12,7 +12,7 @@ I'm a Data Engineer & Analytics Engineer building resilient pipelines with real-
 
 #### [Hybrid Binance Crypto Market Pipeline](https://github.com/Cliffe16/Hybrid-Binance-Crypto-Market-Pipeline)
 
-> Micro-Batch architecture streaming 115,000+ data points across 3,700+ Binance pairs with zero data loss.
+> Micro-Batch architecture streaming 115,000+ data points across 3,700+ Binance pairs with Postgres, Debezium and Cassandra.
 
 * **Stack & Flow**: Airflow $\\rightarrow$ PostgreSQL $\\rightarrow$ Debezium WAL CDC $\\rightarrow$ Kafka $\\rightarrow$ PySpark Structured Streaming (30s micro-batches) $\\rightarrow$ Cassandra $\\rightarrow$ FastAPI & Grafana.
 
