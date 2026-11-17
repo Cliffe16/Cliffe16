@@ -18,7 +18,7 @@ I'm a Data Engineer & Analytics Engineer building resilient pipelines with real-
 
 #### [NBA Analytics Pipeline](https://github.com/Cliffe16/NBA-Analytics-Pipeline)
 
-> Automated daily ELT pipeline ingesting NBA game and player stats into Google Cloud Storage and BigQuery.
+> Automated daily ELT pipeline ingesting NBA game and player stats into BigQuery before transformation.
 
 * **Stack & Flow**: Python API Extraction $\\rightarrow$ GCS Parquet $\\rightarrow$ BigQuery Kimball Star Schema (SCD Type 2) $\\rightarrow$ Airflow (Astronomer Cosmos) & dbt Core + MetricFlow $\\rightarrow$ FastAPI.
 
